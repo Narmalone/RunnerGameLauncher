@@ -1,20 +1,20 @@
 ﻿RunnerGameLauncher
-
+1.0.0.0
 
 winexe
 C#
 .cs
-D:\RunnerGameLauncher\RunngerGameLauncher\RunnerGameLauncher\obj\Debug\net6.0-windows\
+D:\RunnerGameLauncher\RunngerGameLauncher\RunnerGameLauncher\obj\Release\net6.0-windows\
 RunnerGameLauncher
 none
 false
-TRACE;DEBUG;NET;NET6_0;NETCOREAPP
+TRACE;RELEASE;NET;NET6_0;NETCOREAPP
 D:\RunnerGameLauncher\RunngerGameLauncher\RunnerGameLauncher\App.xaml
 11407045341
 
-3-1233169557
+5-995504837
 194-1617825143
 MainWindow.xaml;
 
-False
+True
 

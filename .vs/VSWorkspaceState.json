@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\RunnerGameLauncher"
   ],
-  "SelectedNode": "\\RunnerGameLauncher.sln",
+  "SelectedNode": "\\RunnerGameLauncher\\MainWindow.xaml",
   "PreviewInSolutionExplorer": false
 }
