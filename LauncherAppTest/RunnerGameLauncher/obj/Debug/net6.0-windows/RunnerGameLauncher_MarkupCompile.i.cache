@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\game3\Desktop\RunnerLauncher\LauncherAppTest\RunnerGameLauncher\obj\Debug\net6.0-windows\
+D:\RunnerGameLauncher\RunngerGameLauncher\LauncherAppTest\RunnerGameLauncher\obj\Debug\net6.0-windows\
 RunnerGameLauncher
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-C:\Users\game3\Desktop\RunnerLauncher\LauncherAppTest\RunnerGameLauncher\App.xaml
+D:\RunnerGameLauncher\RunngerGameLauncher\LauncherAppTest\RunnerGameLauncher\App.xaml
 11407045341
 
 51386069505
-194101785492
+194-1617825143
 MainWindow.xaml;
 
 False

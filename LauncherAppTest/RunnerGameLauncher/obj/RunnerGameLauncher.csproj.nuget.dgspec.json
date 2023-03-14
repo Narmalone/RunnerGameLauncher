@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\game3\\Desktop\\RunnerLauncher\\LauncherAppTest\\RunnerGameLauncher\\RunnerGameLauncher.csproj": {}
+    "D:\\RunnerGameLauncher\\RunngerGameLauncher\\LauncherAppTest\\RunnerGameLauncher\\RunnerGameLauncher.csproj": {}
   },
   "projects": {
-    "C:\\Users\\game3\\Desktop\\RunnerLauncher\\LauncherAppTest\\RunnerGameLauncher\\RunnerGameLauncher.csproj": {
+    "D:\\RunnerGameLauncher\\RunngerGameLauncher\\LauncherAppTest\\RunnerGameLauncher\\RunnerGameLauncher.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\game3\\Desktop\\RunnerLauncher\\LauncherAppTest\\RunnerGameLauncher\\RunnerGameLauncher.csproj",
+        "projectUniqueName": "D:\\RunnerGameLauncher\\RunngerGameLauncher\\LauncherAppTest\\RunnerGameLauncher\\RunnerGameLauncher.csproj",
         "projectName": "RunnerGameLauncher",
-        "projectPath": "C:\\Users\\game3\\Desktop\\RunnerLauncher\\LauncherAppTest\\RunnerGameLauncher\\RunnerGameLauncher.csproj",
-        "packagesPath": "C:\\Users\\game3\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\game3\\Desktop\\RunnerLauncher\\LauncherAppTest\\RunnerGameLauncher\\obj\\",
+        "projectPath": "D:\\RunnerGameLauncher\\RunngerGameLauncher\\LauncherAppTest\\RunnerGameLauncher\\RunnerGameLauncher.csproj",
+        "packagesPath": "C:\\Users\\thoma\\.nuget\\packages\\",
+        "outputPath": "D:\\RunnerGameLauncher\\RunngerGameLauncher\\LauncherAppTest\\RunnerGameLauncher\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\game3\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\thoma\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -58,7 +58,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }
