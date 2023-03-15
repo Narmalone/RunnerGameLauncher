@@ -35,8 +35,8 @@ namespace RunnerGameLauncher
         protected override void OnExit(ExitEventArgs e)
         {
             base.OnExit(e);
-            System.Diagnostics.Process.Start("cmd.exe", "/c netsh advfirewall set currentprofile state on");
             AutoUpdater.CheckForUpdateEvent -= AutoUpdater_CheckForUpdateEvent;
+            AutoUpdater.ApplicationExitEvent -= AutoUpdaterOnApplicationExitEvent;
         }
 
         private async void AutoUpdater_CheckForUpdateEvent(UpdateInfoEventArgs args)
@@ -84,14 +84,15 @@ namespace RunnerGameLauncher
                         if (result == DialogResult.Yes)
                         {
                             System.Diagnostics.Process.Start("cmd.exe", "/c netsh advfirewall set currentprofile state off");
+                            AutoUpdater.DownloadUpdate(args);
+                            AutoUpdater.ApplicationExitEvent += AutoUpdaterOnApplicationExitEvent;
                             MessageBox.Show("Le pare-feu Windows a été désactivé temporairement. Veuillez relancer l'application pour poursuivre le téléchargement de la mise à jour.", "Pare-feu Windows désactivé", MessageBoxButtons.OK, MessageBoxImage.Information);
                         }
                         else
                         {
                             MessageBox.Show("Le téléchargement de la mise à jour a été interrompu en raison du pare-feu Windows. Veuillez désactiver temporairement le pare-feu pour poursuivre le téléchargement.", "Pare-feu Windows bloquant", MessageBoxButtons.OK, MessageBoxImage.Warning);
                         }
-                        AutoUpdater.DownloadUpdate(args);
-                        AutoUpdater.ApplicationExitEvent += AutoUpdaterOnApplicationExitEvent;
+                       
                     }
                     catch (WebException ex)
                     {
