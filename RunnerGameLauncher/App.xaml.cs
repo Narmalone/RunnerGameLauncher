@@ -21,6 +21,7 @@ namespace RunnerGameLauncher
         {
             base.OnStartup(e);
             AutoUpdater.Start("https://Narmalone.github.io/RunnerGameLauncher/");
+            AutoUpdater.UpdateMode = Mode.Normal;
             AutoUpdater.CheckForUpdateEvent += AutoUpdater_CheckForUpdateEvent;
         }
         protected override void OnExit(ExitEventArgs e)
@@ -44,7 +45,7 @@ namespace RunnerGameLauncher
                 currentVersion = File.ReadAllText(filePath);
                 MessageBox.Show($"CurrentVersion = {currentVersion}"); // version dans nos files
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -52,7 +53,6 @@ namespace RunnerGameLauncher
             try
             {
                 latestVersion = new WebClient().DownloadString("https://Narmalone.github.io/RunnerGameLauncher/RunnerGameLauncher/version.txt"); //Version en ligne
-                args.IsUpdateAvailable = true;
                 MessageBox.Show($"Sucessfully get the latest version {latestVersion}");
             }
             catch (Exception ex)
@@ -60,17 +60,25 @@ namespace RunnerGameLauncher
                 MessageBox.Show(ex.Message);
             }
 
-            if (args.IsUpdateAvailable)
+            if (latestVersion != currentVersion)
             {
-                if (latestVersion != currentVersion)
-                {
-                    // Affiche un message pour informer l'utilisateur qu'une mise à jour est disponible
-                    MessageBoxResult messageBoxResult = MessageBox.Show($"Une nouvelle version ({latestVersion}) est disponible. Voulez-vous la télécharger ?", "Mise à jour disponible", MessageBoxButton.YesNo);
+                // Affiche un message pour informer l'utilisateur qu'une mise à jour est disponible
+                MessageBoxResult messageBoxResult = MessageBox.Show($"Une nouvelle version ({latestVersion}) est disponible. Voulez-vous la télécharger ?", "Mise à jour disponible", MessageBoxButton.YesNo);
 
-                    if (messageBoxResult == MessageBoxResult.Yes)
+                if (messageBoxResult == MessageBoxResult.Yes)
+                {
+                    try
                     {
-                        // Télécharge et installe la dernière version disponible
+                        MessageBox.Show($"try update with success");
                         AutoUpdater.DownloadUpdate(args);
+                    }
+                    catch (WebException ex)
+                    {
+                        MessageBox.Show($"Une erreur s'est produite lors du téléchargement de la mise à jour : {ex.Message}", "Erreur de téléchargement", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Une erreur s'est produite lors de l'installation de la mise à jour : {ex.Message}", "Erreur d'installation", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
                 }
             }
