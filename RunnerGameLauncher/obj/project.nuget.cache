@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "yns4tE0ddrTtjL7Yo769Ya3fd03oZ6K+wUIs0btjzK1pkBXipqE+gt6NnInEJ43EogHIXfCtFBGg/AQSqctVEQ==",
+  "dgSpecHash": "OOwYynNs/XUQOwNaX8L0L2ri3OTVrWezaYUFMc1cPuQxQKbg+PmtJOYg4fjEM2yrz1YGfhWe+senU+W5D6Pj3Q==",
   "success": true,
-  "projectFilePath": "D:\\RunnerGameLauncher\\RunngerGameLauncher\\RunnerGameLauncher\\RunnerGameLauncher.csproj",
+  "projectFilePath": "C:\\Users\\game3\\Documents\\Github\\RunngerGameLauncher\\RunnerGameLauncher\\RunnerGameLauncher.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\thoma\\.nuget\\packages\\autoupdater.net.official\\1.7.7\\autoupdater.net.official.1.7.7.nupkg.sha512",
-    "C:\\Users\\thoma\\.nuget\\packages\\microsoft.web.webview2\\1.0.1587.40\\microsoft.web.webview2.1.0.1587.40.nupkg.sha512"
+    "C:\\Users\\game3\\.nuget\\packages\\autoupdater.net.official\\1.7.7\\autoupdater.net.official.1.7.7.nupkg.sha512",
+    "C:\\Users\\game3\\.nuget\\packages\\microsoft.web.webview2\\1.0.1587.40\\microsoft.web.webview2.1.0.1587.40.nupkg.sha512"
   ],
   "logs": []
 }

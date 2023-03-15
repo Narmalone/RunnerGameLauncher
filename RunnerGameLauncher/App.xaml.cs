@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
@@ -30,17 +32,36 @@ namespace RunnerGameLauncher
         private void AutoUpdater_CheckForUpdateEvent(UpdateInfoEventArgs args)
         {
 
-            Version currentVersion = Assembly.GetExecutingAssembly().GetName().Version;
-            string versionString = currentVersion.ToString();
+            string currentVersion = string.Empty;
+            string latestVersion = string.Empty;
 
-            MessageBox.Show(versionString);
+            // Récupérer la dernière version disponible sur Internet
+            string directoryPath = Directory.GetCurrentDirectory();
+            string filePath = Path.Combine(directoryPath, "version.txt");
+
+            try
+            {
+                currentVersion = File.ReadAllText(filePath);
+                MessageBox.Show($"CurrentVersion = {currentVersion}");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            try
+            {
+                latestVersion = new WebClient().DownloadString("https://Narmalone.github.io/RunnerGameLauncher/version.txt");
+                MessageBox.Show($"Sucessfully get the latest version {latestVersion}");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
             if (args.IsUpdateAvailable)
             {
-
-                Version latestVersion = args.InstalledVersion;
-
-                if (latestVersion > currentVersion)
+                if (latestVersion != currentVersion)
                 {
                     // Affiche un message pour informer l'utilisateur qu'une mise à jour est disponible
                     MessageBoxResult messageBoxResult = MessageBox.Show($"Une nouvelle version ({latestVersion}) est disponible. Voulez-vous la télécharger ?", "Mise à jour disponible", MessageBoxButton.YesNo);
