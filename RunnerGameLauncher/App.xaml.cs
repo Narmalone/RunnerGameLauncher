@@ -69,7 +69,6 @@ namespace RunnerGameLauncher
                 {
                     try
                     {
-                        MessageBox.Show($"try update with success");
                         AutoUpdater.DownloadUpdate(args);
                     }
                     catch (WebException ex)
