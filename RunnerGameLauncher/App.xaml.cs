@@ -6,6 +6,7 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
@@ -17,6 +18,9 @@ namespace RunnerGameLauncher
     /// </summary>
     public partial class App : Application
     {
+
+        string currentVersion = string.Empty;
+        string latestVersion = string.Empty;
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
@@ -30,11 +34,9 @@ namespace RunnerGameLauncher
             AutoUpdater.CheckForUpdateEvent -= AutoUpdater_CheckForUpdateEvent;
         }
 
-        private void AutoUpdater_CheckForUpdateEvent(UpdateInfoEventArgs args)
+        private async void AutoUpdater_CheckForUpdateEvent(UpdateInfoEventArgs args)
         {
 
-            string currentVersion = string.Empty;
-            string latestVersion = string.Empty;
 
             // Récupérer la dernière version disponible sur Internet
             string directoryPath = Directory.GetCurrentDirectory();
@@ -52,7 +54,8 @@ namespace RunnerGameLauncher
 
             try
             {
-                latestVersion = new WebClient().DownloadString("https://Narmalone.github.io/RunnerGameLauncher/RunnerGameLauncher/version.txt"); //Version en ligne
+                await AsyncMethod();
+                //latestVersion = new WebClient().DownloadString("https://Narmalone.github.io/RunnerGameLauncher/RunnerGameLauncher/version.txt"); //Version en ligne
                 MessageBox.Show($"Sucessfully get the latest version {latestVersion}");
             }
             catch (Exception ex)
@@ -70,6 +73,7 @@ namespace RunnerGameLauncher
                     try
                     {
                         AutoUpdater.DownloadUpdate(args);
+                        AutoUpdater.ApplicationExitEvent += AutoUpdaterOnApplicationExitEvent;
                     }
                     catch (WebException ex)
                     {
@@ -87,5 +91,30 @@ namespace RunnerGameLauncher
                 MessageBox.Show("Vous utilisez la dernière version de l'application.");
             }
         }
+
+        private void AutoUpdaterOnApplicationExitEvent()
+        {
+            AutoUpdater.ApplicationExitEvent -= AutoUpdaterOnApplicationExitEvent;
+            Application.Current.Shutdown();
+        }
+
+        public async Task AsyncMethod()
+        {
+            string url = "https://Narmalone.github.io/RunnerGameLauncher/RunnerGameLauncher/version.txt";
+
+            // best practice to create one HttpClient per Application and inject it
+            HttpClient client = new HttpClient();
+
+            using (HttpResponseMessage response = await client.GetAsync(url))
+            {
+                using (HttpContent content = response.Content)
+                {
+                    var json = await content.ReadAsStringAsync(); // Version actuelle qu'il y'a dans le txt en string
+                    latestVersion = json;
+                        
+                }
+            }
+        }
     }
+   
 }
