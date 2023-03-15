@@ -52,6 +52,7 @@ namespace RunnerGameLauncher
             try
             {
                 latestVersion = new WebClient().DownloadString("https://Narmalone.github.io/RunnerGameLauncher/RunnerGameLauncher/version.txt"); //Version en ligne
+                args.IsUpdateAvailable = true;
                 MessageBox.Show($"Sucessfully get the latest version {latestVersion}");
             }
             catch (Exception ex)
