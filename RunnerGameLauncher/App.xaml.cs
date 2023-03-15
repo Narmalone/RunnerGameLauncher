@@ -10,7 +10,12 @@ using System.Net.Http;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Forms;
+using MessageBox = System.Windows.MessageBox;
+using MessageBoxButtons = System.Windows.MessageBoxButton;
+using MessageBoxImage = System.Windows.MessageBoxImage;
 
+using Application = System.Windows.Application;
 namespace RunnerGameLauncher
 {
     /// <summary>
@@ -18,7 +23,6 @@ namespace RunnerGameLauncher
     /// </summary>
     public partial class App : Application
     {
-
         string currentVersion = string.Empty;
         string latestVersion = string.Empty;
         protected override void OnStartup(StartupEventArgs e)
@@ -31,6 +35,7 @@ namespace RunnerGameLauncher
         protected override void OnExit(ExitEventArgs e)
         {
             base.OnExit(e);
+            System.Diagnostics.Process.Start("cmd.exe", "/c netsh advfirewall set currentprofile state on");
             AutoUpdater.CheckForUpdateEvent -= AutoUpdater_CheckForUpdateEvent;
         }
 
@@ -72,6 +77,19 @@ namespace RunnerGameLauncher
                 {
                     try
                     {
+                        // Demander à l'utilisateur s'il souhaite désactiver le pare-feu Windows
+                        DialogResult result = System.Windows.Forms.MessageBox.Show("Le téléchargement de la mise à jour semble bloqué. Voulez-vous désactiver temporairement le pare-feu Windows ?", "Pare-feu Windows bloquant", System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Question);
+
+                        // Si l'utilisateur a répondu "Oui", désactiver le pare-feu
+                        if (result == DialogResult.Yes)
+                        {
+                            System.Diagnostics.Process.Start("cmd.exe", "/c netsh advfirewall set currentprofile state off");
+                            MessageBox.Show("Le pare-feu Windows a été désactivé temporairement. Veuillez relancer l'application pour poursuivre le téléchargement de la mise à jour.", "Pare-feu Windows désactivé", MessageBoxButtons.OK, MessageBoxImage.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Le téléchargement de la mise à jour a été interrompu en raison du pare-feu Windows. Veuillez désactiver temporairement le pare-feu pour poursuivre le téléchargement.", "Pare-feu Windows bloquant", MessageBoxButtons.OK, MessageBoxImage.Warning);
+                        }
                         AutoUpdater.DownloadUpdate(args);
                         AutoUpdater.ApplicationExitEvent += AutoUpdaterOnApplicationExitEvent;
                     }
