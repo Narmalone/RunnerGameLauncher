@@ -60,7 +60,7 @@ namespace RunnerGameLauncher
                 MessageBox.Show(ex.Message);
             }
 
-            if (latestVersion != currentVersion)
+            if (latestVersion != currentVersion && latestVersion != null)
             {
                 // Affiche un message pour informer l'utilisateur qu'une mise à jour est disponible
                 MessageBoxResult messageBoxResult = MessageBox.Show($"Une nouvelle version ({latestVersion}) est disponible. Voulez-vous la télécharger ?", "Mise à jour disponible", MessageBoxButton.YesNo);
