@@ -79,7 +79,7 @@ namespace GameLauncher
                 {
                     WebClient webClient = new WebClient(); //update soon en http client
                     //Version onlineVersion = new Version(webClient.DownloadString("https://drive.google.com/uc?export=download&id=1aqrqhVloRuBwucYAfEGib7izyr3c0UFO")); //google drive direct link au version.txt
-                    Version onlineVersion = new Version(webClient.DownloadString("https://drive.google.com/uc?export=download&id=1aqrqhVloRuBwucYAfEGib7izyr3c0UFO")); //google drive direct link au version.txt
+                    Version onlineVersion = new Version(webClient.DownloadString("https://narmalone.github.io/RunnerGameLauncher/Version.txt")); //google drive direct link au version.txt
 
                     if (onlineVersion.IsDifferentThan(localVersion))
                     {
@@ -117,7 +117,7 @@ namespace GameLauncher
                 {
                     Status = LauncherStatus.downloadingGame;
                     //_onlineVersion = new Version(webClient.DownloadString("https://drive.google.com/uc?export=download&id=1aqrqhVloRuBwucYAfEGib7izyr3c0UFO")); //google drive direct link au version.txt
-                    _onlineVersion = new Version(webClient.DownloadString("https://drive.google.com/uc?export=download&id=1aqrqhVloRuBwucYAfEGib7izyr3c0UFO")); //google drive direct link au version.txt
+                    _onlineVersion = new Version(webClient.DownloadString("https://narmalone.github.io/RunnerGameLauncher/Version.txt")); //google drive direct link au version.txt
                 }
 
                 webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(DownloadGameCompletedCallback);
