@@ -124,7 +124,7 @@ namespace GameLauncher
 
                 //google drive direct link au build.zip
                 //webClient.DownloadFileAsync(new Uri("https://drive.google.com/uc?export=download&id=1VE_BKzvUYyWErht64-JxXrR6Ii1nXtk9"), gameZip, _onlineVersion); // on fait un async car si on le faisait de manière synchrone ça voudrait dire que l'app ne répondrait pas jusqu'a la fin du téléchargement
-                webClient.DownloadFileAsync(new Uri("https://drive.google.com/uc?export=download&id=1VE_BKzvUYyWErht64-JxXrR6Ii1nXtk9"), gameZip, _onlineVersion); // on fait un async car si on le faisait de manière synchrone ça voudrait dire que l'app ne répondrait pas jusqu'a la fin du téléchargement
+                webClient.DownloadFileAsync(new Uri("\"https://narmalone.github.io/RunnerGameLauncher/Build.zip"), gameZip, _onlineVersion); // on fait un async car si on le faisait de manière synchrone ça voudrait dire que l'app ne répondrait pas jusqu'a la fin du téléchargement
             }
             catch (Exception ex)
             {
