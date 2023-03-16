@@ -173,12 +173,13 @@ namespace GameLauncher
             {
                 string onlineVersion = ((Version)e.UserState).ToString();
 
-                MessageBox.Show($"Online version is: {onlineVersion}");
                 ZipFile.ExtractToDirectory(gameZip, roothPath, true);
                 File.Delete(gameZip);
 
                 File.WriteAllText(versionFile, onlineVersion);
-                VersionText.Text = onlineVersion;
+                Version localVersion = new Version(File.ReadAllText(versionFile));
+                MessageBox.Show($"Online Version: {onlineVersion} and your version is now {localVersion}");
+                VersionText.Text = $"Current Version: {localVersion}";
                 Status = LauncherStatus.ready;
 
             }
