@@ -65,7 +65,7 @@ namespace GameLauncher
             roothPath = Directory.GetCurrentDirectory();
             versionFile = Path.Combine(roothPath, "Version.txt");
             gameZip = Path.Combine(roothPath, "Build.zip");
-            gameExe = Path.Combine(roothPath, "Build", "AS.exe"); //Mon nom de fichier .exe et nom de dossier ou est retenu le jeu
+            gameExe = Path.Combine(roothPath, "RunnerBuild", "AS.exe"); //Mon nom de fichier .exe et nom de dossier ou est retenu le jeu
         }
 
         private void CheckForUpdates()
@@ -80,7 +80,8 @@ namespace GameLauncher
                     WebClient webClient = new WebClient(); //update soon en http client
                     //Version onlineVersion = new Version(webClient.DownloadString("https://drive.google.com/uc?export=download&id=1aqrqhVloRuBwucYAfEGib7izyr3c0UFO")); //google drive direct link au version.txt
                     Version onlineVersion = new Version(webClient.DownloadString("https://narmalone.github.io/RunnerGameLauncher/Version.txt")); //google drive direct link au version.txt
-
+                    MessageBox.Show(onlineVersion.ToString());
+                    MessageBox.Show(localVersion.ToString());
                     if (onlineVersion.IsDifferentThan(localVersion))
                     {
                         InstallGameFiles(true, onlineVersion); //si r marche le passer en glase
@@ -175,7 +176,7 @@ namespace GameLauncher
             if (File.Exists(gameExe) && Status == LauncherStatus.ready)
             {
                 ProcessStartInfo startInfo = new ProcessStartInfo(gameExe);
-                startInfo.WorkingDirectory = Path.Combine(roothPath, "Build");
+                startInfo.WorkingDirectory = Path.Combine(roothPath, "RunnerBuild");
                 MessageBox.Show(startInfo.WorkingDirectory);
                 Process.Start(startInfo);
 
@@ -187,8 +188,7 @@ namespace GameLauncher
             }
             else
             {
-                MessageBox.Show("start button hitted but no exe");
-                Close();
+                //Close();
             }
         }
     }
