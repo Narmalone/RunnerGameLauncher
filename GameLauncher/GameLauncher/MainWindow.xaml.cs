@@ -78,6 +78,7 @@ namespace GameLauncher
                 try
                 {
                     WebClient webClient = new WebClient(); //update soon en http client
+                    //Version onlineVersion = new Version(webClient.DownloadString("https://drive.google.com/uc?export=download&id=1aqrqhVloRuBwucYAfEGib7izyr3c0UFO")); //google drive direct link au version.txt
                     Version onlineVersion = new Version(webClient.DownloadString("https://drive.google.com/uc?export=download&id=1aqrqhVloRuBwucYAfEGib7izyr3c0UFO")); //google drive direct link au version.txt
 
                     if (onlineVersion.IsDifferentThan(localVersion))
@@ -115,12 +116,14 @@ namespace GameLauncher
                 else
                 {
                     Status = LauncherStatus.downloadingGame;
+                    //_onlineVersion = new Version(webClient.DownloadString("https://drive.google.com/uc?export=download&id=1aqrqhVloRuBwucYAfEGib7izyr3c0UFO")); //google drive direct link au version.txt
                     _onlineVersion = new Version(webClient.DownloadString("https://drive.google.com/uc?export=download&id=1aqrqhVloRuBwucYAfEGib7izyr3c0UFO")); //google drive direct link au version.txt
                 }
 
                 webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(DownloadGameCompletedCallback);
 
                 //google drive direct link au build.zip
+                //webClient.DownloadFileAsync(new Uri("https://drive.google.com/uc?export=download&id=1VE_BKzvUYyWErht64-JxXrR6Ii1nXtk9"), gameZip, _onlineVersion); // on fait un async car si on le faisait de manière synchrone ça voudrait dire que l'app ne répondrait pas jusqu'a la fin du téléchargement
                 webClient.DownloadFileAsync(new Uri("https://drive.google.com/uc?export=download&id=1VE_BKzvUYyWErht64-JxXrR6Ii1nXtk9"), gameZip, _onlineVersion); // on fait un async car si on le faisait de manière synchrone ça voudrait dire que l'app ne répondrait pas jusqu'a la fin du téléchargement
             }
             catch (Exception ex)

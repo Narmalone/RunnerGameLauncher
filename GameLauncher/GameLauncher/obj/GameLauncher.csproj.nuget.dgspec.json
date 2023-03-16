@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\thoma\\OneDrive\\Bureau\\GameLauncher\\GameLauncher\\GameLauncher\\GameLauncher.csproj": {}
+    "C:\\Users\\game3\\Documents\\Github\\RunnerGameLauncher\\GameLauncher\\GameLauncher\\GameLauncher.csproj": {}
   },
   "projects": {
-    "C:\\Users\\thoma\\OneDrive\\Bureau\\GameLauncher\\GameLauncher\\GameLauncher\\GameLauncher.csproj": {
+    "C:\\Users\\game3\\Documents\\Github\\RunnerGameLauncher\\GameLauncher\\GameLauncher\\GameLauncher.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\thoma\\OneDrive\\Bureau\\GameLauncher\\GameLauncher\\GameLauncher\\GameLauncher.csproj",
+        "projectUniqueName": "C:\\Users\\game3\\Documents\\Github\\RunnerGameLauncher\\GameLauncher\\GameLauncher\\GameLauncher.csproj",
         "projectName": "GameLauncher",
-        "projectPath": "C:\\Users\\thoma\\OneDrive\\Bureau\\GameLauncher\\GameLauncher\\GameLauncher\\GameLauncher.csproj",
-        "packagesPath": "C:\\Users\\thoma\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\thoma\\OneDrive\\Bureau\\GameLauncher\\GameLauncher\\GameLauncher\\obj\\",
+        "projectPath": "C:\\Users\\game3\\Documents\\Github\\RunnerGameLauncher\\GameLauncher\\GameLauncher\\GameLauncher.csproj",
+        "packagesPath": "C:\\Users\\game3\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\game3\\Documents\\Github\\RunnerGameLauncher\\GameLauncher\\GameLauncher\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\thoma\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\game3\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
