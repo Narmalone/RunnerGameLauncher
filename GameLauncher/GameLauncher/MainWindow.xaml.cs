@@ -5,6 +5,8 @@ using System.IO;
 using System.IO.Compression;
 using System.Net;
 using System.Windows;
+using System.Windows.Media;
+using System.Windows.Threading;
 
 namespace GameLauncher
 {
@@ -34,6 +36,8 @@ namespace GameLauncher
         private string gameZip;
         private string gameExe;
 
+        private DispatcherTimer timer;
+
         private LauncherStatus _status;
         internal LauncherStatus Status
         {
@@ -45,15 +49,19 @@ namespace GameLauncher
                 {
                     case LauncherStatus.ready:
                         PlayButton.Content = "Play";
+                        PlayButton.Background = Brushes.DarkGreen;
                         break;
                     case LauncherStatus.failed:
                         PlayButton.Content = "Update Failed - Retry";
+                        PlayButton.Background = Brushes.DarkRed;
                         break;
                     case LauncherStatus.downloadingGame:
                         PlayButton.Content = "Downloading Game";
+                        PlayButton.Background = Brushes.DarkCyan;
                         break;
                     case LauncherStatus.dowloadingUpdate:
                         PlayButton.Content = "Downloading Update";
+                        PlayButton.Background = Brushes.DarkCyan;
                         break;
                 }
             }
@@ -65,7 +73,25 @@ namespace GameLauncher
             roothPath = Directory.GetCurrentDirectory();
             versionFile = Path.Combine(roothPath, "Version.txt");
             gameZip = Path.Combine(roothPath, "Build.zip");
-            gameExe = Path.Combine(roothPath, "RunnerBuild", "AS.exe"); //Mon nom de fichier .exe et nom de dossier ou est retenu le jeu
+            gameExe = Path.Combine(roothPath, "Build", "AS.exe"); //Mon nom de fichier .exe et nom de dossier ou est retenu le jeu
+
+            //Timer pour chercker une update depuis le client toutes les 10 minutes
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromMinutes(10);
+            timer.Tick += Timer_Tick;
+            timer.Start();
+
+        }
+
+        private void Timer_Tick(object? sender, EventArgs e)
+        {
+            CheckForUpdates();
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            timer.Tick -= Timer_Tick;
         }
 
         private void CheckForUpdates()
@@ -73,21 +99,28 @@ namespace GameLauncher
             if (File.Exists(versionFile))
             {
                 Version localVersion = new Version(File.ReadAllText(versionFile));
-                VersionText.Text = localVersion.ToString();
+                VersionText.Text = $"Version: {localVersion}";
 
                 try
                 {
                     WebClient webClient = new WebClient(); //update soon en http client
                     //Version onlineVersion = new Version(webClient.DownloadString("https://drive.google.com/uc?export=download&id=1aqrqhVloRuBwucYAfEGib7izyr3c0UFO")); //google drive direct link au version.txt
                     Version onlineVersion = new Version(webClient.DownloadString("https://narmalone.github.io/RunnerGameLauncher/Version.txt")); //google drive direct link au version.txt
-                    MessageBox.Show(onlineVersion.ToString());
-                    MessageBox.Show(localVersion.ToString());
                     if (onlineVersion.IsDifferentThan(localVersion))
                     {
-                        InstallGameFiles(true, onlineVersion); //si r marche le passer en glase
+                        var result = MessageBox.Show($"La nouvelle version: {onlineVersion} peut-être installée sur votre ordinateur, cela peut prendre un certains temps.", "Veuillez ne pas éteindre l'ordinateur pendant ce temps", MessageBoxButton.YesNo);
+                        if (result == MessageBoxResult.Yes)
+                        {
+                            InstallGameFiles(true, onlineVersion);
+                        }
+                        else if(result == MessageBoxResult.No)
+                        {
+                            MessageBox.Show("Suite à la réponse utilisateur l'application va être fermée - Connard fais les mises à jour.");
+                            Close();
+                        }
                     }
                     else
-                    {
+                    { 
                         Status = LauncherStatus.ready;
                     }
                 }
@@ -176,8 +209,7 @@ namespace GameLauncher
             if (File.Exists(gameExe) && Status == LauncherStatus.ready)
             {
                 ProcessStartInfo startInfo = new ProcessStartInfo(gameExe);
-                startInfo.WorkingDirectory = Path.Combine(roothPath, "RunnerBuild");
-                MessageBox.Show(startInfo.WorkingDirectory);
+                startInfo.WorkingDirectory = Path.Combine(roothPath, "Build");
                 Process.Start(startInfo);
 
                 Close();
@@ -185,10 +217,6 @@ namespace GameLauncher
             else if(Status == LauncherStatus.failed)
             {
                 CheckForUpdates();
-            }
-            else
-            {
-                //Close();
             }
         }
     }
