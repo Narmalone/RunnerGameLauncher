@@ -73,7 +73,7 @@ namespace GameLauncher
             roothPath = Directory.GetCurrentDirectory();
             versionFile = Path.Combine(roothPath, "Version.txt");
             gameZip = Path.Combine(roothPath, "Build.zip");
-            gameExe = Path.Combine(roothPath, "Build", "AS.exe"); //Mon nom de fichier .exe et nom de dossier ou est retenu le jeu
+            gameExe = Path.Combine(roothPath, "Build", "EgoRush.exe"); //Mon nom de fichier .exe et nom de dossier ou est retenu le jeu
 
             //Timer pour chercker une update depuis le client toutes les 10 minutes
             timer = new DispatcherTimer();

@@ -7,11 +7,16 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         ContentRendered="Window_ContentRendered"
-        Title="AS - Runner Game" Height="576" Width="1080">
+        Title="Ego Rush - Runner Game" Height="576" Width="1080">
     <Grid>
-        <Image Stretch="UniformToFill" Source="images/background.jpg" HorizontalAlignment="Right"/>
-        <TextBlock x:Name="VersionText" VerticalAlignment="Bottom" HorizontalAlignment="Right" FontSize="20" Foreground="White" Margin="0,0,5,0" Text="Version: 0.0.1" Padding="10"/>
-        <TextBlock x:Name="CreatorsText" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontSize="20" Foreground="White" Text="Bru Thomas and Mendiboure Nicolas" Padding="10"/>
-        <Button Name="PlayButton" Content="Checking For Updates" Click="PlayButton_Click" Height="60" FontSize="28" FontWeight="Bold" Foreground="#DDFFFFFF" Margin="0,0,0,15" VerticalAlignment="Bottom" HorizontalAlignment="Center" MinWidth="150" Padding="10,1,10,1" Background="#FFFFD616"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="17*"/>
+            <ColumnDefinition Width="61*"/>
+            <ColumnDefinition Width="1003*"/>
+        </Grid.ColumnDefinitions>
+        <Image Stretch="UniformToFill" Source="images/background.jpg" HorizontalAlignment="Left" Grid.ColumnSpan="3"/>
+        <TextBlock x:Name="VersionText" VerticalAlignment="Bottom" HorizontalAlignment="Right" FontSize="20" Foreground="White" Margin="0,0,5,0" Text="Version: 0.0.1" Padding="10" Grid.Column="2"/>
+        <TextBlock x:Name="CreatorsText" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontSize="20" Foreground="White" Text="Bru Thomas and Mendiboure Nicolas" Padding="10" Grid.ColumnSpan="3"/>
+        <Button Name="PlayButton" Content="Checking For Updates" Click="PlayButton_Click" Height="60" FontSize="28" FontWeight="Bold" Foreground="#DDFFFFFF" Margin="308,0,0,15" VerticalAlignment="Bottom" HorizontalAlignment="Left" MinWidth="150" Padding="10,1,10,1" Background="#FFFFD616" Grid.Column="2"/>
     </Grid>
 </Window>
